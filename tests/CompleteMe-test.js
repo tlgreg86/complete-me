@@ -57,11 +57,11 @@ describe('CompleteMe test', () => {
     assert.equal(foundNode2.letter, 'm')
   })
 
-  // it('should select a word from recommendations array', () => {
-  //   completeMe.select('do', 'dogged')
-  //
-  //   assert.deepEqual()
-  // })
+  it('should select a word from recommendations array', () => {
+    completeMe.select('do', 'dogged')
+
+    assert.deepEqual()
+  })
 
 })
 
@@ -82,6 +82,15 @@ describe('Dictionary test', () => {
     let suggestion = completeMe.suggest("piz")
 
     assert.deepEqual(suggestion, ["pize", "pizza", "pizzeria", "pizzicato", "pizzle"])
+  })
+
+  it('should move most frequently used word to front of suggestions array', () => {
+
+    completeMe.select('pizzeria')
+
+    let suggestion = completeMe.suggest('piz')
+
+    assert.deepEqual(suggestion[0], 'pizzeria')
   })
 
 

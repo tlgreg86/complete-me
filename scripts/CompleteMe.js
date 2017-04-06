@@ -34,13 +34,22 @@ export default class CompleteMe {
   suggest (input) {
     let suggestions = [];
 
-    return this.getWord(this.findNode(input), input, suggestions)
+    suggestions = this.getWord(this.findNode(input), input, suggestions)
+
+    suggestions.sort( (a, b) => {
+      return b.timesSelected - a.timesSelected
+    })
+
+    return suggestions.map( (object) => {
+      return object.word;
+    })
+
   }
 
 
   getWord (currentNode, input, suggestions) {
     if (currentNode.isWord) {
-      suggestions.push(input);
+      suggestions.push({word: input, timesSelected: currentNode.timesSelected});
     }
     let nodeKeys = Object.keys(currentNode.children)
 
@@ -75,15 +84,10 @@ export default class CompleteMe {
   }
 
 
-  // select (prefix, word) {
-  //   // need to get suggestions => []
-  //   let suggestions = this.suggest(prefix)
-  //   // find word in suggestions array => 'string'
-  //   suggestions.find( word => {
-  //     currentNode.children ===
-  //   })
-  //   // findNode('string') => object
-  //   // object.counter ++
-  // }
+  select (word) {
+    let foundNode = this.findNode(word)
+    
+    foundNode.timesSelected++
+  }
 
 }
