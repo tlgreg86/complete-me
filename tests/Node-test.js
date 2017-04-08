@@ -4,19 +4,23 @@ import Node from '../scripts/Node';
 describe('Node test', () => {
   var node = new Node('p')
 
-  it('Should have a class of node', () => {
+  it('should have a class of node', () => {
 
     assert.isFunction(Node)
   })
 
-  it('Should have a letter', () => {
+  it('should have a letter', () => {
 
     assert.equal(node.letter, 'p')
   })
 
-  it('Should have isWord with a default of false', () => {
+  it('should have isWord with a default of false', () => {
 
     assert.equal(node.isWord, false)
+  })
+
+  it('should determine number of times node is selected with a default of 0', () => {
+    assert.equal(node.timesSelected, 0)
   })
 
 })
